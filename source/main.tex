@@ -1,0 +1,855 @@
+\documentclass{amsart}
+\usepackage{amssymb,mathtools}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={The irrationality exponent of small-height binary lacunary series is 2},pdfauthor={Ruiyi Zhang}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}[section]
+\numberwithin{equation}{section}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\begin{document}
+
+\title[Small-height binary lacunary series]{The irrationality exponent of small-height binary lacunary series is 2}
+\author{Ruiyi Zhang}
+\address{Independent Researcher, Columbia, Maryland, USA}
+\email{ryzfsu@gmail.com}
+\subjclass[2020]{Primary 11J82; Secondary 11J70, 11B83}
+\keywords{irrationality exponent, lacunary series, rational height, Hankel determinant, Pad\'e approximation}
+
+\begin{abstract}
+Let $N\ge2$ be an integer and let $\lambda_j$ be nonzero rational
+numbers with $\log H(\lambda_j)=o(2^j)$, where $H(u/v)=\max(|u|,v)$
+for $u/v$ in lowest terms with $v>0$. We prove that $\sum_{j\ge0}\lambda_jN^{-2^j}$ is irrational and
+has irrationality exponent $2$. The proof uses Pad\'e approximants to
+the tails $\sum_{r\ge0}\lambda_{k+r}z^{2^r}$. The two Hankel families
+they need satisfy parity recursions, so they are nonzero for all nonzero
+weights.
+After the finite prefix of the series is cleared, the approximants of
+order $n$ give integer linear forms with height
+$N^{(n+1/2)2^k}$ and error $N^{-(n+1/2)2^k}$, up to factors
+$e^{o(2^k)}$. Only finitely many orders are used for each target
+exponent. The height condition cannot be weakened to
+$\log H(\lambda_j)\le C2^j$ for any constant $C>0$: for every $C$ some
+such weights give exponent greater than $2$, and for larger $C$
+positive integer weights can give a rational number or a Liouville
+number.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+For an irrational real number $\xi$, its irrationality exponent is
+\[
+\mu(\xi)=\sup\left\{\nu\in\R:
+\left|\xi-\frac pq\right|<q^{-\nu}
+\text{ for infinitely many }(p,q)\in\Z\times\Z_{>0}\right\}.
+\]
+The pigeonhole principle gives $\mu(\xi)\ge2$ (see the end of Section~5).
+Write $L=\log N$.
+For a nonzero rational number in lowest terms, put
+\begin{equation}\label{eq:rationalheight}
+H(u/v)=\max(|u|,v),\qquad u\in\Z\setminus\{0\},\quad
+v\in\Z_{>0},\quad \gcd(u,v)=1.
+\end{equation}
+We show that equality holds for binary lacunary series with rational
+weights of sufficiently small height.
+
+\begin{theorem}\label{thm:main}
+Let $N\in\Z$, $N\ge2$, and let $(\lambda_j)_{j\ge0}$ be a sequence
+in $\Q\setminus\{0\}$ such that $\log H(\lambda_j)=o(2^j)$.
+Then the absolutely convergent series
+\begin{equation}\label{eq:x}
+x=\sum_{j=0}^{\infty}\lambda_jN^{-2^j}
+ =\frac{\lambda_0}{N}+\frac{\lambda_1}{N^2}
+  +\frac{\lambda_2}{N^4}+\frac{\lambda_3}{N^8}+\cdots
+\end{equation}
+is irrational and satisfies $\mu(x)=2$.
+\end{theorem}
+
+Geometric weights $\lambda_j=\lambda^j$, with $\lambda\in\Q\setminus\{0\}$,
+satisfy the hypothesis because $\log H(\lambda^j)=O(j)$.
+Every sequence drawn in arbitrary order from a finite subset of
+$\Q\setminus\{0\}$ also satisfies the hypothesis, since its heights are bounded.
+
+Duverney's criterion \cite[Corollary~3.4]{Du01} already gives
+irrationality under this height condition. For $w_j=N^{2^j}$, its
+rationality exception would require
+\[
+\lambda_j\lambda_{j+2}=w_j\lambda_{j+1}^2
+\]
+eventually. Here
+$\log|\lambda_j\lambda_{j+2}/\lambda_{j+1}^2|=o(2^j)$, whereas
+$\log w_j=2^jL$, so the exception cannot occur.
+Duverney \cite[Theorem~3.2]{Du01} also studies finite exponent bounds.
+For related work, see his later paper \cite{Du24}.
+
+Duverney, Kurosawa and Shiokawa \cite[Theorem~1]{DKS} consider signed
+series $\sum\epsilon_j/x_j$, where $x_j>1$ are rational and
+$x_{j+1}\ge x_j^2$ eventually. Their denominator condition is
+\begin{equation}\label{eq:DKS}
+\delta_1=\operatorname{den}(x_1),\qquad
+\delta_{j+1}=\delta_j^2\operatorname{den}(x_{j+1}/x_j^2),\qquad
+\log\delta_{j+1}=o(\log x_j),
+\end{equation}
+where $\operatorname{den}$ is the reduced positive denominator.
+They conclude
+$\mu(\sum\epsilon_j/x_j)=\limsup_j\log x_{j+1}/\log x_j$.
+For $x_j=N^{2^j}/(t|\lambda_j|)$ with a fixed rational $t>0$,
+the ratio is $t|\lambda_j|^2/|\lambda_{j+1}|$; the accumulated
+condition in \eqref{eq:DKS} can fail even for a finite set of weights.
+
+Amou and Bugeaud \cite[Lemma~3]{AB} give an earlier criterion for
+$\sum B_j/A_j$, with strictly increasing positive integers $A_j$
+and nonzero integers $B_j$. Their hypotheses include ratios
+$S_j=(A_{j+1}/|B_{j+1}|)/(A_j/|B_j|)^2\ge2$ eventually and
+$\prod_{r=0}^j d_r^{2^{j-r}}=A_j^{o(1)}$, where
+$d_j=\operatorname{den}(S_j)$ and $d_0=|B_1|$; small heights alone
+do not imply this cumulative arithmetic condition.
+
+For unit weights, Shallit \cite[Theorems~8--9]{Sh} proved bounded
+partial quotients when $N\ge3$. For $N=2$, he states the corresponding
+result for $2\sum_{j\ge0}2^{-2^j}$
+\cite[Theorem~11 and following example]{Sh}.
+He also states a recursion for weights $(-1)^j$ when $N\ge3$
+\cite[Theorem~12]{Sh}.
+
+For nonzero integral geometric weights, Bugeaud, Han, Wen and Yao
+\cite[Theorem~2.1]{BHWY} give exponent $2$:
+$g(z)=\sum_{r\ge0}\lambda^rz^{2^r-1}$ has integer coefficients,
+satisfies $g(z)=1+\lambda zg(z^2)$, and has nonzero Hankel
+determinants of every order by Lemma~\ref{lem:hankel}.
+The multiplier $\lambda z$ is nonzero on the orbit of $1/N$.
+The same theorem covers periodic rational weights. If the period is
+$p\ge1$ and $D_{\mathrm{per}}\in\Z_{>0}$ clears the denominators, then
+$f(z)=D_{\mathrm{per}}\sum_{j\ge0}\lambda_jz^{2^j-1}\in\Z[[z]]$
+converges in the unit disk and satisfies
+$f(z)=P(z)+z^{2^p-1}f(z^{2^p})$ with $P\in\Z[z]$.
+Lemma~\ref{lem:hankel} gives every Hankel order, and $z^{2^p-1}$
+does not vanish on the orbit of $1/N$. Since
+$x=f(1/N)/(D_{\mathrm{per}}N)$, \cite[Theorem~2.1]{BHWY} gives
+$\mu(x)=2$.
+Su \cite[Theorem~7.3]{Su} gives a formal continued fraction for
+$\sum_{j\ge0}c_jz^{2^j-1}$ with $c_0=1$ and nonzero $c_j$ in any
+field.
+
+Rajchert \cite{Ra} and Su \cite{Su} study related questions on irrationality exponents and continued fractions of Mahler-type series. None of our results depends on these works; apart from standard facts, every step is proved here.
+
+For geometric weights, Mahler's method also gives transcendence
+\cite[Corollary~2]{Ni90}. The series
+$F(z)=\sum_{r\ge0}\lambda^rz^{2^r}$ has radius $1$ and Hadamard
+gaps, so it is transcendental over $\mathbb C(z)$.
+It satisfies $F(z)=z+\lambda F(z^2)$; the matrix of the system for
+$(1,F(z))^{\mathsf T}$ and its inverse have polynomial entries.
+The orbit of $1/N$ therefore contains no singular point.
+
+Our proof uses moving tails and their Hankel recursions. After clearing
+the finite prefix, adjacent Pad\'e approximants give integer pairs
+with nonzero determinant. For each target exponent the finite set of
+orders is fixed first, so all coefficient costs are $o(2^k)$ at tail
+shift $k$. Section~6 shows that the height scale is sharp.
+
+Throughout the proof write
+\begin{equation}\label{eq:weights}
+\begin{gathered}
+\lambda_j=\frac{u_j}{v_j},\qquad
+u_j\in\Z\setminus\{0\},\quad v_j\in\Z_{>0},\quad
+\gcd(u_j,v_j)=1,\\
+h_j=\log H(\lambda_j).
+\end{gathered}
+\end{equation}
+In particular,
+\begin{equation}\label{eq:weightbounds}
+e^{-h_j}\le|\lambda_j|\le e^{h_j}.
+\end{equation}
+The upper bound and $h_j=o(2^j)$ give absolute convergence of
+\eqref{eq:x}. The moving tails are
+\begin{equation}\label{eq:F}
+F_k(z)=\sum_{r\ge0}\lambda_{k+r}z^{2^r},\qquad
+F_k(z)=\lambda_kz+F_{k+1}(z^2).
+\end{equation}
+For each fixed $k$, the series converges absolutely for $|z|<1$.
+
+\section{Hankel determinants}
+
+Put
+\begin{equation}\label{eq:a}
+g_k(z)=\frac{F_k(z)}z=\sum_{i\ge0}a_i^{(k)}z^i.
+\end{equation}
+By \eqref{eq:F},
+\begin{equation}\label{eq:coeff}
+a_0^{(k)}=\lambda_k,\qquad a_{2i}^{(k)}=0\quad(i\ge1),\qquad
+a_{2i+1}^{(k)}=a_i^{(k+1)}\quad(i\ge0).
+\end{equation}
+Define
+\begin{equation}\label{eq:HK}
+\begin{aligned}
+H_n^{(k)}&=\det(a_{i+j}^{(k)})_{0\le i,j<n},& H_0^{(k)}&=1,\\
+K_n^{(k)}&=\det(a_{i+j+1}^{(k)})_{0\le i,j<n},& K_0^{(k)}&=1.
+\end{aligned}
+\end{equation}
+
+\begin{lemma}\label{lem:hankel}
+For all shifts $k\ge0$, the determinants satisfy
+\begin{align}
+H_{2m}^{(k)}&=(-1)^m(H_m^{(k+1)})^2 &&(m\ge1),\label{eq:Heven}\\
+H_{2m+1}^{(k)}&=(-1)^m\lambda_k(K_m^{(k+1)})^2
+&&(m\ge0),\label{eq:Hodd}\\
+K_n^{(k)}&=H_{\lceil n/2\rceil}^{(k+1)}K_{\lfloor n/2\rfloor}^{(k+1)}
+&&(n\ge1).\label{eq:Krec}
+\end{align}
+In particular, $H_n^{(k)}K_n^{(k)}\ne0$ for every $n,k\ge0$.
+\end{lemma}
+
+\begin{proof}
+Ordering rows and columns by parity makes the two permutation signs cancel.
+For $H_{2m}^{(k)}$, the matrix becomes
+\[
+\begin{pmatrix}\lambda_k E_{00}&A\\ A^{\mathsf T}&0\end{pmatrix},
+\qquad A=(a_{r+s}^{(k+1)})_{0\le r,s<m},
+\]
+where $E_{00}$ has its sole nonzero entry $1$ in the upper left corner.
+Exchanging the two blocks of $m$ columns contributes
+$(-1)^{m^2}=(-1)^m$ and leaves diagonal blocks $A$ and
+$A^{\mathsf T}$. This proves \eqref{eq:Heven}.
+
+For $H_{2m+1}^{(k)}$, separate index $0$, the remaining even indices,
+and the odd indices. The case $m=0$ gives $H_1^{(k)}=\lambda_k$.
+For $m\ge1$, put
+\[
+\boldsymbol a=(a_0^{(k+1)},\ldots,a_{m-1}^{(k+1)})^{\mathsf T},\qquad
+G_m=(a_{r+s+1}^{(k+1)})_{0\le r,s<m}.
+\]
+The matrix is
+\begin{equation}\label{eq:oddblock}
+\begin{pmatrix}
+\lambda_k&0&\boldsymbol a^{\mathsf T}\\
+0&0&G_m\\
+\boldsymbol a&G_m^{\mathsf T}&0
+\end{pmatrix}.
+\end{equation}
+Since $\lambda_k\ne0$, pivoting on the first entry gives the Schur
+complement
+\[
+\begin{pmatrix}0&G_m\\G_m^{\mathsf T}&-\lambda_k^{-1}
+\boldsymbol a\boldsymbol a^{\mathsf T}\end{pmatrix}.
+\]
+For square blocks of size $m$, column exchange gives
+\begin{equation}\label{eq:blockidentity}
+\det\begin{pmatrix}0&B\\C&X\end{pmatrix}
+=(-1)^m\det B\det C.
+\end{equation}
+The determinant of \eqref{eq:oddblock} is
+$(-1)^m\lambda_k(\det G_m)^2$, proving \eqref{eq:Hodd}.
+
+For $K_n^{(k)}$, the mixed parity blocks vanish by \eqref{eq:coeff}.
+The diagonal blocks are
+\[
+(a_{r+s}^{(k+1)})_{0\le r,s<\lceil n/2\rceil},\qquad
+(a_{r+s+1}^{(k+1)})_{0\le r,s<\lfloor n/2\rfloor}.
+\]
+This proves \eqref{eq:Krec}. Strong induction on $n$, simultaneously
+for all $k$, starts from
+\[
+H_0^{(k)}=K_0^{(k)}=1,\qquad H_1^{(k)}=\lambda_k,\qquad
+K_1^{(k)}=\lambda_{k+1}.
+\]
+Every remaining factor has smaller size, so all determinants are nonzero.
+\end{proof}
+
+Only offsets $0$ and $1$ are needed; other Hankel determinants may
+vanish, since $a_2^{(k)}=0$. The weights may have either sign.
+For geometric weights, $g_k=\lambda^kg_0$; writing $H_n=H_n^{(0)}$
+and $K_n=K_n^{(0)}$, the recursions specialize to
+\[
+H_{2m}=(-1)^m\lambda^{2m}H_m^2,\qquad
+H_{2m+1}=(-1)^m\lambda^{2m}K_m^2,\qquad
+K_n=\lambda^nH_{\lceil n/2\rceil}K_{\lfloor n/2\rfloor}.
+\]
+
+\section{Pad\'e approximants to the moving tails}
+
+\begin{lemma}\label{lem:pade}
+For each $n\ge1$ and $k\ge0$, there exist a positive integer $d_{n,k}$
+and polynomials $U_{n,k},V_{n,k}\in\Z[z]$ with
+\begin{equation}\label{eq:degrees}
+\deg U_{n,k},\deg V_{n,k}\le n,\qquad V_{n,k}(0)=d_{n,k}>0,
+\end{equation}
+such that
+\begin{equation}\label{eq:remainder}
+E_{n,k}(z):=V_{n,k}(z)F_k(z)-U_{n,k}(z)
+=c_{n,k}z^{2n+1}+O(z^{2n+2}),\qquad
+c_{n,k}\in\Z\setminus\{0\}.
+\end{equation}
+They can be chosen so that, for each fixed finite set of orders,
+all their coefficients, $d_{n,k}$ and $|c_{n,k}|$ are at most
+$\exp(o(2^k))$, uniformly over that set as $k\to\infty$.
+They also satisfy the exact identity
+\begin{equation}\label{eq:adjacent}
+U_{n+1,k}V_{n,k}-U_{n,k}V_{n+1,k}
+ =\Omega_{n,k}z^{2n+1},\qquad
+\Omega_{n,k}=d_{n+1,k}c_{n,k}\in\Z\setminus\{0\}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Fix $n,k$. By Lemma~\ref{lem:hankel}, the system
+\begin{equation}\label{eq:system}
+\sum_{i=0}^{n-1}a_{i+j}^{(k)}b_i=-a_{n+j}^{(k)}
+\qquad(0\le j<n)
+\end{equation}
+has a unique rational solution. For a power series $W$, the notation
+$[W]_{<n}$ retains only powers below $n$. Put
+\begin{gather}
+p_{n,k}(T)=T^n+\sum_{i=0}^{n-1}b_iT^i,\qquad
+Q_{n,k}(z)=z^np_{n,k}(1/z),\label{eq:pQ}\\
+P_{n,k}(z)=z[Q_{n,k}(z)g_k(z)]_{<n}.\label{eq:Ptrunc}
+\end{gather}
+Both polynomials have degree at most $n$, and $Q_{n,k}(0)=1$.
+Here $[z^\ell]W$ denotes the coefficient of $z^\ell$ in $W$.
+
+Define the linear functional $\mathcal L_k(T^j)=a_j^{(k)}$.
+For $n\le\ell<2n$, \eqref{eq:system} gives
+\[
+[z^\ell](Q_{n,k}g_k)=\mathcal L_k(T^{\ell-n}p_{n,k})=0.
+\]
+At $\ell=2n$, the bordered determinant formula gives
+\begin{equation}\label{eq:schur}
+\begin{split}
+\mathcal L_k(T^np_{n,k})
+ &=a_{2n}^{(k)}-\boldsymbol h^{\mathsf T}
+       (a_{i+j}^{(k)})_{i,j<n}^{-1}\boldsymbol h
+ =\frac{H_{n+1}^{(k)}}{H_n^{(k)}},\\
+\boldsymbol h&=(a_n^{(k)},\ldots,a_{2n-1}^{(k)})^{\mathsf T}.
+\end{split}
+\end{equation}
+Hence
+\begin{equation}\label{eq:normalizederror}
+Q_{n,k}F_k-P_{n,k}
+ =\frac{H_{n+1}^{(k)}}{H_n^{(k)}}z^{2n+1}+O(z^{2n+2}).
+\end{equation}
+
+We choose the integerizer explicitly, because its size enters the
+height. Set
+\begin{equation}\label{eq:localwindow}
+\ell_n=\lfloor\log_2(2n+1)\rfloor,\qquad
+\mathcal D_{n,k}=\prod_{r=0}^{\ell_n}v_{k+r},\qquad
+\Sigma_{n,k}=\sum_{r=0}^{\ell_n}h_{k+r}.
+\end{equation}
+Every $\mathcal D_{n,k}a_i^{(k)}$ with $0\le i\le2n$ is an
+integer. Let
+\begin{equation}\label{eq:integerizer}
+\mathfrak D_{n,k}
+ =\det(\mathcal D_{n,k}a_{i+j}^{(k)})_{0\le i,j<n},\qquad
+ d_{n,k}=\mathcal D_{n,k}|\mathfrak D_{n,k}|.
+\end{equation}
+The determinant $\mathfrak D_{n,k}$ is a nonzero integer.
+Cramer's rule in \eqref{eq:system} shows that every coefficient of
+$d_{n,k}Q_{n,k}$ is an integer multiple of $\mathcal D_{n,k}$.
+Consequently
+\begin{equation}\label{eq:integerpolys}
+U_{n,k}=d_{n,k}P_{n,k},\qquad
+V_{n,k}=d_{n,k}Q_{n,k}
+\end{equation}
+are integer polynomials. The coefficient of degree $2n+1$ in
+$V_{n,k}F_k-U_{n,k}$ is also an integer: all coefficients of $F_k$
+needed at that degree have denominator dividing $\mathcal D_{n,k}$.
+By \eqref{eq:normalizederror}, it is
+\begin{equation}\label{eq:c}
+c_{n,k}=d_{n,k}\frac{H_{n+1}^{(k)}}{H_n^{(k)}}\ne0.
+\end{equation}
+In particular, $|c_{n,k}|\ge1$.
+
+Next we bound the sizes in Lemma~\ref{lem:pade}.
+Write $\Sigma=\Sigma_{n,k}$. Then
+\[
+\mathcal D_{n,k}\le e^{\Sigma},\qquad
+|\mathcal D_{n,k}a_i^{(k)}|\le e^{2\Sigma}
+\quad(0\le i\le2n).
+\]
+Expansion of the determinant, and of the integer Cramer numerators,
+gives
+\begin{equation}\label{eq:coefficientcost}
+\begin{aligned}
+1\le|\mathfrak D_{n,k}|&\le n!e^{2n\Sigma},\\
+1\le d_{n,k}&\le n!e^{(2n+1)\Sigma},\\
+\max\left\{\max_i|[z^i]U_{n,k}|,
+\max_i|[z^i]V_{n,k}|,|c_{n,k}|\right\}
+ &\le(n+1)!e^{(2n+2)\Sigma}.
+\end{aligned}
+\end{equation}
+For the last line, a coefficient of $U_{n,k}$ or the leading error
+is a convolution of at most $n+1$ terms; a coefficient of $F_k$
+contributes at most $e^{\Sigma}$. The division by
+$\mathfrak D_{n,k}$ cancels when the Cramer solution is multiplied by
+$d_{n,k}$.
+Since $n$ is fixed and $h_j=o(2^j)$, $\Sigma_{n,k}=o(2^k)$,
+uniformly over finitely many orders. The polynomials, their integerizer
+and $c_{n,k}$ depend only on the weights in \eqref{eq:localwindow};
+the remainder $E_{n,k}$ depends on the whole tail.
+
+Finally, the polynomial on the left of \eqref{eq:adjacent} has degree
+at most $2n+1$. Substituting $U_{j,k}=V_{j,k}F_k-E_{j,k}$ shows that
+it has no terms below degree $2n+1$, and that the coefficient at that
+degree is $d_{n+1,k}c_{n,k}\ne0$. Thus it is exactly the monomial
+in \eqref{eq:adjacent}.
+\end{proof}
+
+We evaluate at a point that moves with $k$.
+Put
+\begin{equation}\label{eq:movingpoint}
+\Delta=2^k,\qquad y=N^{-\Delta},\qquad
+\varepsilon_k=\sup_{j\ge k}\frac{h_j}{2^j}.
+\end{equation}
+The hypothesis gives $\varepsilon_k\to0$. Moreover,
+\begin{equation}\label{eq:prefixheight}
+\sum_{j<k}h_j=o(2^k).
+\end{equation}
+Given $\rho>0$, choose $J$ such that $h_j\le\rho2^j$ for
+$j\ge J$. The fixed sum before $J$, divided by $2^k$, tends to zero,
+and the remaining sum divided by $2^k$ is at most $\rho$.
+
+\begin{lemma}\label{lem:local}
+For any fixed finite set of orders, uniformly over that set as
+$k\to\infty$,
+\begin{align}
+Q_{n,k}(y)&=1+O\bigl(\exp(-L\Delta+o(\Delta))\bigr),\label{eq:Vbounds}\\
+E_{n,k}(y)&=c_{n,k}y^{2n+1}
+ \left(1+O\bigl(\exp(-L\Delta+o(\Delta))\bigr)\right).
+ \label{eq:Ebounds}
+\end{align}
+In particular, $V_{n,k}(y)>0$ and $E_{n,k}(y)\ne0$ for all
+sufficiently large $k$, and
+\begin{equation}\label{eq:errorlog}
+\log|E_{n,k}(y)|=-(2n+1)L\Delta+o(\Delta).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The integer Cramer numerators used above have absolute value at most
+$n!\exp(2n\Sigma_{n,k})$, and their denominator is a nonzero
+integer. Thus the nonconstant coefficients of $Q_{n,k}$ have size
+$\exp(o(\Delta))$. Since $y=\exp(-L\Delta)$, their finite sum
+proves \eqref{eq:Vbounds}. Also $V_{n,k}=d_{n,k}Q_{n,k}$ with
+$d_{n,k}>0$, proving eventual positivity.
+
+Fix $n$, and split $F_k$ after the terms with $r\le\ell_n$.
+The first omitted exponent is
+\[
+t_n=2^{\ell_n+1}>2n+1.
+\]
+For every $r\ge0$, the definition of $\varepsilon_k$ gives
+\[
+|\lambda_{k+r}|y^{2^r}
+ \le\exp\bigl(-(L-\varepsilon_k)\Delta2^r\bigr).
+\]
+For all sufficiently large $k$, $L-\varepsilon_k\ge L/2$ and
+\begin{align}
+\sum_{r\ge\ell_n+1}|\lambda_{k+r}|y^{2^r}
+&\le\sum_{s\ge0}\exp\bigl(-(L-\varepsilon_k)\Delta t_n2^s\bigr)
+ \notag\\
+&\le2\exp\bigl(-(L-\varepsilon_k)\Delta t_n\bigr)
+ =\exp(-Lt_n\Delta+o(\Delta)).\label{eq:infinitebound}
+\end{align}
+The second inequality uses $2^s\ge s+1$ and, for large $k$, the
+geometric ratio $\exp(-(L-\varepsilon_k)\Delta t_n)\le1/2$.
+
+Multiplying the finite part by $V_{n,k}$ and subtracting
+$U_{n,k}$ gives a polynomial whose leading term is
+$c_{n,k}z^{2n+1}$. All its subsequent terms have degree at least
+$2n+2$ and coefficients of size $\exp(o(\Delta))$ by
+\eqref{eq:coefficientcost}. At $y$, their sum is therefore at most
+$\exp(-(2n+2)L\Delta+o(\Delta))$.
+The omitted part, after multiplication by $V_{n,k}(y)$, is bounded
+by \eqref{eq:infinitebound} with an additional factor
+$\exp(o(\Delta))$. Since $t_n\ge2n+2$ and $|c_{n,k}|\ge1$,
+both parts, relative to $c_{n,k}y^{2n+1}$, have absolute value at
+most $\exp(-L\Delta+o(\Delta))$.
+This proves \eqref{eq:Ebounds}, and the factor in parentheses is
+eventually nonzero. Finally, $0\le\log|c_{n,k}|=o(\Delta)$ proves
+\eqref{eq:errorlog}; there are finitely many orders, so all bounds
+are uniform.
+\end{proof}
+
+\section{Moving-tail iteration and integerization}
+
+Fix $k\ge1$, so that $N^{\Delta/2}$ below is an integer, and retain
+$\Delta=2^k$, $y=N^{-\Delta}$.
+Repeatedly splitting \eqref{eq:F} gives the exact identity
+\begin{equation}\label{eq:iteration}
+x=S_k+F_k(y),\qquad
+S_k=\sum_{j=0}^{k-1}\frac{u_j}{v_jN^{2^j}}.
+\end{equation}
+Define
+\begin{equation}\label{eq:prefixintegerizer}
+C_k=\operatorname{lcm}(v_0,\ldots,v_{k-1}),\qquad
+T_k=C_kN^{\Delta/2},\qquad J_k=T_kS_k.
+\end{equation}
+All three are integers: for $j<k$, $v_j$ divides $C_k$ and
+$2^j\le\Delta/2$. Equations \eqref{eq:prefixheight} and
+\eqref{eq:prefixintegerizer} give
+\begin{equation}\label{eq:prefixcost}
+0\le\log C_k\le\sum_{j<k}h_j=o(\Delta),\qquad
+\log T_k=\tfrac12 L\Delta+o(\Delta).
+\end{equation}
+
+Put
+\begin{align}
+\widetilde U_{n,k}&=N^{n\Delta}U_{n,k}(y),&
+\widetilde V_{n,k}&=N^{n\Delta}V_{n,k}(y),\label{eq:AB}\\
+B_{n,k}&=T_k\widetilde V_{n,k},&
+A_{n,k}&=J_k\widetilde V_{n,k}+T_k\widetilde U_{n,k}.\notag
+\end{align}
+The degree bounds give integer evaluations and hence integer pairs
+$A_{n,k},B_{n,k}$.
+For all sufficiently large $k$ in a fixed finite order set,
+$B_{n,k}>0$ and
+\begin{align}
+\frac{A_{n,k}}{B_{n,k}}
+ &=S_k+\frac{U_{n,k}(y)}{V_{n,k}(y)},\label{eq:quotient}\\
+B_{n,k}x-A_{n,k}
+ &=T_kN^{n\Delta}E_{n,k}(y)\ne0.\label{eq:integererror}
+\end{align}
+
+Put
+\begin{equation}\label{eq:scale}
+\tau_{n,k}=(n+\tfrac12)L\Delta.
+\end{equation}
+Write the relative error in \eqref{eq:Ebounds} as $r_{n,k}=o(1)$.
+Then
+\begin{align}
+B_{n,k}
+ &=C_kd_{n,k}e^{\tau_{n,k}}Q_{n,k}(y),\label{eq:exactheight}\\
+B_{n,k}x-A_{n,k}
+ &=C_kc_{n,k}e^{-\tau_{n,k}}(1+r_{n,k}).\label{eq:exacterror}
+\end{align}
+Every additional logarithm in these two expressions is
+$o(\Delta)$, uniformly over a fixed finite set of orders. Hence
+\begin{align}
+\log B_{n,k}&=\tau_{n,k}+o(\Delta),\label{eq:height}\\
+\log|B_{n,k}x-A_{n,k}|&=-\tau_{n,k}+o(\Delta),\label{eq:error}\\
+\log\left|x-\frac{A_{n,k}}{B_{n,k}}\right|
+ &=-2\tau_{n,k}+o(\Delta).\label{eq:rationalerror}
+\end{align}
+The individual factors have logarithmic size
+\[
+\begin{array}{c|c}
+\text{quantity}&\text{logarithmic size at fixed }n\\ \hline
+T_k&\frac12L\Delta+o(\Delta)\\
+N^{n\Delta}&nL\Delta\\
+d_{n,k},\ |c_{n,k}|&o(\Delta)\\
+V_{n,k}(y)&o(\Delta)\\
+|E_{n,k}(y)|&-(2n+1)L\Delta+o(\Delta).
+\end{array}
+\]
+The prefix costs $\tfrac12L\Delta$, and the factor $z$ in
+$F_k=zg_k$ raises the error order to $2n+1$; the two halves balance,
+since $2(n+\tfrac12)=2n+1$. Also
+$|A_{n,k}|\le|x|B_{n,k}+|B_{n,k}x-A_{n,k}|$, so $A_{n,k}$
+obeys the same height bound.
+
+The adjacent identity \eqref{eq:adjacent} gives
+\begin{equation}\label{eq:integerdet}
+A_{n+1,k}B_{n,k}-A_{n,k}B_{n+1,k}
+=C_k^2N^{\Delta}\Omega_{n,k}\ne0.
+\end{equation}
+The two terms containing $J_k$ cancel, leaving
+\begin{align*}
+&T_k^2N^{(2n+1)\Delta}
+ \bigl(U_{n+1,k}(y)V_{n,k}(y)-U_{n,k}(y)V_{n+1,k}(y)\bigr)\\
+&\qquad=C_k^2N^{(2n+2)\Delta}\Omega_{n,k}y^{2n+1}
+ =C_k^2N^{\Delta}\Omega_{n,k}.
+\end{align*}
+Hence, for every $(p,q)\in\Z\times\Z_{>0}$, the two integers
+\begin{equation}\label{eq:sourceintegers}
+B_{n,k}p-qA_{n,k},\qquad B_{n+1,k}p-qA_{n+1,k}
+\end{equation}
+cannot both vanish.
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+First fix $n=1$ and let $k\to\infty$.
+By \eqref{eq:integererror} and \eqref{eq:error}, the forms
+$B_{1,k}x-A_{1,k}$ are eventually nonzero and tend to zero.
+If $x=a/b$ were rational, with $a\in\Z$ and $b\in\Z_{>0}$, then
+\[
+b(B_{1,k}x-A_{1,k})=B_{1,k}a-bA_{1,k}
+\]
+would be a nonzero integer tending to zero, a contradiction.
+This proves irrationality.
+
+For the upper bound we use a fixed finite set of orders.
+Fix an integer $M\ge1$ and use primary orders $M\le n\le2M$,
+each with companion $n+1$. The whole order set is therefore
+\begin{equation}\label{eq:bank}
+\mathcal B=\{M,M+1,\ldots,2M+1\}.
+\end{equation}
+Put
+\begin{equation}\label{eq:alpha}
+\alpha_M=1+\frac1{M+1/2}.
+\end{equation}
+Order the primary scales $\tau_{n,k}$ by increasing $k$, and then
+increasing $n$. This is their numerical order, because the largest
+scale in one block is $(2M+\tfrac12)L2^k$, and the first in the
+next is $(2M+1)L2^k$. Within a block, successive ratios are at most
+\[
+\frac{M+3/2}{M+1/2}=\alpha_M.
+\]
+At a block transition the ratio is
+\[
+\frac{2(M+1/2)}{2M+1/2}<\alpha_M.
+\]
+The companion scale also satisfies
+$\tau_{n+1,k}\le\alpha_M\tau_{n,k}$.
+
+Fix $0<\eta<1$. Since the order set $\mathcal B$ is finite, \eqref{eq:height} and
+\eqref{eq:error} hold beyond one common threshold. For each
+sufficiently large primary scale $\tau=\tau_{n,k}$, its two rows
+$i=n,n+1$ satisfy
+\begin{equation}\label{eq:bankbounds}
+0<B_{i,k}\le\exp((\alpha_M+\eta)\tau),\qquad
+|B_{i,k}x-A_{i,k}|\le\exp(-(1-\eta)\tau).
+\end{equation}
+The companion has a larger scale, which only improves its error.
+Since $\tau$ is a fixed multiple of $\Delta$ for each order in the
+order set $\mathcal B$, the $o(\Delta)$ terms are absorbed once $M$ and $\eta$ are fixed.
+
+Let $q$ be any sufficiently large positive integer. Choose the first
+primary scale for which
+\begin{equation}\label{eq:selection}
+\tau\ge\frac{\log(4q)}{1-\eta}.
+\end{equation}
+For sufficiently large $q$ it has a predecessor beyond the common
+threshold. The scale-ratio bound therefore gives
+\begin{equation}\label{eq:taurange}
+\frac{\log(4q)}{1-\eta}\le\tau
+ \le\frac{\alpha_M\log(4q)}{1-\eta}.
+\end{equation}
+Set
+\begin{equation}\label{eq:beta}
+\beta=\frac{\alpha_M(\alpha_M+\eta)}{1-\eta}.
+\end{equation}
+For both selected rows, \eqref{eq:bankbounds}--\eqref{eq:taurange}
+imply
+\begin{equation}\label{eq:qbounds}
+B_{i,k}\le(4q)^\beta,\qquad
+q|B_{i,k}x-A_{i,k}|\le\frac14.
+\end{equation}
+
+Suppose $p\in\Z$ and
+\begin{equation}\label{eq:toogood}
+\left|x-\frac pq\right|
+ <4^{-(\beta+1)}q^{-(1+\beta)}.
+\end{equation}
+For $i=n,n+1$, the integer $I_{i,k}=B_{i,k}p-qA_{i,k}$ satisfies
+\begin{align}
+|I_{i,k}|
+&\le B_{i,k}q\left|\frac pq-x\right|
+      +q|B_{i,k}x-A_{i,k}|\notag\\
+&<(4q)^\beta q\,4^{-(\beta+1)}q^{-(1+\beta)}+\frac14
+ =\frac12.\label{eq:contradiction}
+\end{align}
+Both integers would vanish, contrary to \eqref{eq:integerdet}.
+Hence the reverse of \eqref{eq:toogood} holds for every integer $p$
+and every sufficiently large $q$, whether or not $p/q$ is reduced or
+equals a selected approximant.
+
+Let $\nu>2$. Since $\alpha_M\to1$, choose
+$M$ such that $1+\alpha_M^2<\nu$, and then choose $\eta>0$ small
+enough that $1+\beta<\nu$. With these choices fixed, the proved
+lower bound
+\[
+\left|x-\frac pq\right|\ge4^{-(\beta+1)}q^{-(1+\beta)}
+\]
+is larger than $q^{-\nu}$ for all sufficiently large $q$.
+Only finitely many pairs with the remaining denominators can satisfy
+$|x-p/q|<q^{-\nu}$. Thus $\mu(x)\le\nu$, and letting $\nu$
+decrease to $2$ gives $\mu(x)\le2$.
+
+The choices have the order
+\begin{equation}\label{eq:quantifiers}
+\bigl((\lambda_j)_{j\ge0},N\bigr)
+\ \longrightarrow\ \nu>2
+\ \longrightarrow\ M,\eta,\mathcal B
+\ \longrightarrow\ k_0,q_0
+\ \longrightarrow\ (p,q)
+\ \longrightarrow\ k,n.
+\end{equation}
+The thresholds $k_0,q_0$ depend on the sequence and its little-$o$
+modulus.
+
+For the reverse bound, fix an integer $R\ge1$ and partition $[0,1)$
+into $R$ intervals of length $1/R$.
+Two fractional parts among $\{jx\}$, $0\le j\le R$, lie in one interval.
+Their difference gives integers $p,q$ with
+\[
+1\le q\le R,\qquad |qx-p|<1/R,\qquad
+\left|x-\frac pq\right|<\frac1{qR}\le\frac1{q^2}.
+\]
+Since $x$ is irrational, for each fixed $D$ the finitely many
+distances $\|qx\|$, $1\le q\le D$, have a positive minimum $m_D>0$,
+where $\|t\|$ denotes distance from $t$ to the nearest integer.
+For $R>1/m_D$, the inequality $|qx-p|<1/R$ forces $q>D$.
+These denominators are unbounded as $R\to\infty$, and
+$\mu(x)\ge2$.\qed
+
+\section{Sharpness of the height scale}
+
+The little-$o$ condition cannot be replaced by a bound
+$\log H(\lambda_j)\le C_*2^j$ with any constant $C_*>0$. Below,
+small coefficients give exponent greater than $2$, and the coefficient
+$\tfrac12L$ gives both a rational and a Liouville sum.
+
+Fix $0<\theta<1/3$, and put
+\begin{equation}\label{eq:sharpweights}
+m_j=\lfloor\theta2^j\rfloor,\qquad
+\lambda_j=N^{(-1)^jm_j},\qquad
+e_j=2^j-(-1)^jm_j.
+\end{equation}
+The weights are positive rationals, with
+\begin{equation}\label{eq:sharpheight}
+\log H(\lambda_j)=m_jL=\theta L2^j+O(1).
+\end{equation}
+The associated sum has the exact digit expansion
+\[
+x=\sum_{j\ge0}N^{-e_j}.
+\]
+The exponents are strictly increasing: for odd $j$,
+\[
+e_{j+1}-e_j=2^j-m_j-m_{j+1}\ge(1-3\theta)2^j>0,
+\]
+and for even $j$ their difference is $2^j+m_j+m_{j+1}>0$.
+The gaps tend to infinity, so the expansion is not eventually periodic
+and $x$ is irrational.
+
+Let $p_j/q_j$ be the truncation through index $j$, in lowest terms.
+Its denominator is exactly $q_j=N^{e_j}$, because its numerator is
+$1$ modulo $N$ and hence is coprime to every prime dividing $N$.
+The increasing integer exponents give
+\begin{equation}\label{eq:sharptail}
+0<x-\frac{p_j}{q_j}
+ \le\frac{N^{-e_{j+1}}}{1-N^{-1}}\le2N^{-e_{j+1}}.
+\end{equation}
+Along even indices,
+\[
+\frac{e_{j+1}}{e_j}\longrightarrow\frac{2(1+\theta)}{1-\theta}>2.
+\]
+For every $\nu<2(1+\theta)/(1-\theta)$, \eqref{eq:sharptail} is less than
+$q_j^{-\nu}$ at all sufficiently large even indices. Consequently
+\begin{equation}\label{eq:sharpmu}
+\mu(x)\ge\frac{2(1+\theta)}{1-\theta}>2.
+\end{equation}
+Equivalently, for each $0<\kappa<L/3$ this gives
+\[
+\log H(\lambda_j)\sim \kappa2^j,\qquad
+\mu(x)\ge\frac{2(L+\kappa)}{L-\kappa}.
+\]
+Given any $C_*>0$, choose $0<\kappa<\min(C_*,L/3)$.
+Then the same weights satisfy $\log H(\lambda_j)\le C_*2^j$ for
+all $j$, but their sum has exponent greater than $2$.
+
+A rational sum is possible with positive integer weights. Set
+\begin{equation}\label{eq:rationalsharp}
+\lambda_0=N-1,\qquad
+\lambda_j=N^{2^{j-1}}-1\quad(j\ge1).
+\end{equation}
+For $j\ge1$,
+\[
+\lambda_jN^{-2^j}=N^{-2^{j-1}}-N^{-2^j},
+\]
+so the partial sums telescope:
+\[
+\sum_{j=0}^{m}\lambda_jN^{-2^j}=1-N^{-2^m}.
+\]
+The infinite sum is therefore $1$, whereas
+\begin{equation}\label{eq:halfheight}
+\log H(\lambda_j)\sim\frac12L\,2^j.
+\end{equation}
+
+The same coefficient also allows a Liouville number. Keep $\lambda_0=N-1$, and replace the later weights by
+\[
+\widetilde\lambda_j=N^{2^{j-1}}-1+
+\boldsymbol1_{\{j=r^2\text{ for some }r\ge1\}}\quad(j\ge1).
+\]
+These are again positive integers and satisfy \eqref{eq:halfheight}.
+Their sum is
+\[
+\widetilde x=1+\xi_N,\qquad \xi_N=\sum_{r\ge1}N^{-2^{r^2}}.
+\]
+Its digit expansion is not eventually periodic, so $\xi_N$ is irrational.
+The truncation through $r=R$ has reduced denominator
+$q_R=N^{2^{R^2}}$, since its numerator is $1$ modulo $N$, and
+\[
+0<\xi_N-\sum_{r=1}^{R}N^{-2^{r^2}}
+ \le2N^{-2^{(R+1)^2}}=2q_R^{-2^{2R+1}}.
+\]
+The same bound holds after adding $1$. Since $2^{2R+1}\to\infty$,
+this proves $\mu(\widetilde x)=\infty$.
+
+The height condition is not necessary for an individual series. For example, given an integer $b\ge2$,
+the weights $\lambda_j=b^{-2^j}$ have
+$\log H(\lambda_j)=(\log b)2^j$, but their sum equals
+$\sum_{j\ge0}(Nb)^{-2^j}$. Theorem~\ref{thm:main}, applied with
+base $Nb$ and constant weights $1$, gives exponent $2$ for that sum.
+
+
+\section*{Use of AI tools}
+
+The author devised the main argument. Codex (OpenAI, GPT-6 Astra) carried
+out exact checks of the Hankel identities and searched the literature.
+Claude Code (Anthropic, Claude Opus 5.5) reviewed the arguments and
+references. The author takes responsibility for the proof and references.
+
+\begin{thebibliography}{9}
+
+\bibitem{AB}
+M.~Amou and Y.~Bugeaud, \emph{Exponents of Diophantine approximation
+and expansions in integer bases}, J. Lond. Math. Soc. (2)
+\textbf{81} (2010), 297--316.
+
+\bibitem{BHWY}
+Y.~Bugeaud, G.-N.~Han, Z.-Y.~Wen, and J.-Y.~Yao,
+\emph{Hankel determinants, Pad\'e approximations, and irrationality
+exponents}, Int. Math. Res. Not. IMRN \textbf{2016} (2016), no.~5,
+1467--1496, \url{https://doi.org/10.1093/imrn/rnv185}.
+
+\bibitem{Du01}
+D.~Duverney, \emph{Irrationality of fast converging series of rational
+numbers}, J. Math. Sci. Univ. Tokyo \textbf{8} (2001), 275--316.
+
+\bibitem{Du24}
+D.~Duverney, \emph{Irrationality of certain fast converging series and
+infinite products}, Hokkaido Math. J. \textbf{53} (2024), no.~2,
+377--394, \url{https://doi.org/10.14492/hokmj/2022-679}.
+
+\bibitem{DKS}
+D.~Duverney, T.~Kurosawa, and I.~Shiokawa,
+\emph{Irrationality exponents of certain fast converging series of
+rational numbers}, Tsukuba J. Math. \textbf{44} (2020), no.~2,
+235--250, \url{https://doi.org/10.21099/tkbjm/20204402235}.
+
+\bibitem{Ni90}
+K.~Nishioka, \emph{New approach in Mahler's method},
+J. Reine Angew. Math. \textbf{407} (1990), 202--219.
+
+\bibitem{Ra}
+A.~Rajchert, \emph{On the irrationality exponents of Mahler numbers},
+arXiv:2411.10733 (2024).
+
+\bibitem{Sh}
+J.~O.~Shallit, \emph{Simple continued fractions for some irrational
+numbers}, J. Number Theory \textbf{11} (1979), no.~2, 209--217,
+doi:10.1016/0022-314X(79)90040-4.
+
+\bibitem{Su}
+L.-H.~Su, \emph{Binary-valuation identities and lacunary continued fractions
+in integer sequences}, Zenodo record 23676031 (2026),
+\url{https://doi.org/10.5281/zenodo.23676031}.
+
+\end{thebibliography}
+
+\end{document}
